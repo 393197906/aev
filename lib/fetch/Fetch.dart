@@ -44,7 +44,6 @@ class Fetch {
   }
 
   _fetch(FetchOptions fetchOptions) {
-    print(fetchOptions.url);
     return _dio.request(
       fetchOptions.url,
       options: Options(
