@@ -7,6 +7,10 @@ class Ioc {
     _container.registerSingleton<T>(instance);
   }
 
+  static providerLazy<T>(FactoryFunc<T> func) {
+    _container.registerLazySingleton(func);
+  }
+
   static providerFactory<T>(FactoryFunc<T> func) {
     _container.registerFactory(func);
   }

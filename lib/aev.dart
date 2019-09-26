@@ -21,3 +21,6 @@ export 'package:fluro/fluro.dart';
 // toast
 export 'Toast/index.dart';
 export 'package:fluttertoast/fluttertoast.dart' show ToastGravity;
+
+// shared_preferences (持久化)
+export 'package:shared_preferences/shared_preferences.dart';
