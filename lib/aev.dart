@@ -4,6 +4,7 @@ library aev;
 export 'fetch/Fetch.dart';
 export 'fetch/middleware.dart';
 export 'fetch/YcError.dart';
+export 'fetch/YcData.dart';
 export 'package:dio/dio.dart' show Headers, FormData;
 
 // regexp

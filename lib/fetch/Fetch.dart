@@ -28,7 +28,7 @@ class FetchOptions {
   }
 }
 
-typedef RealFetch = dynamic Function(FetchOptions fetchOptions);
+typedef RealFetch = Function(FetchOptions fetchOptions);
 typedef Middleware = RealFetch Function(RealFetch fetch);
 
 class Fetch {

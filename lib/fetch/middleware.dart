@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:aev/fetch/YcData.dart';
 import 'package:dio/dio.dart';
 
 import 'Fetch.dart';
@@ -16,9 +17,10 @@ Middleware ycFilter([ErrorHandler errorHandler]) {
         if (statusCode != 200 && statusCode != true) {
           final message =
               data['message'] ?? data['msg'] ?? data['info'] ?? "未知错误";
-          throw YcError(message: message, statusCode: statusCode);
+          throw YcError(message: message, statusCode: int.parse(statusCode));
         }
-        return data['data'] ?? null;
+        return YcData(
+            data: data['data'] ?? null, response: res, completeData: data);
       }).catchError((e) {
         var error;
         if (e is DioError) {
@@ -27,12 +29,16 @@ Middleware ycFilter([ErrorHandler errorHandler]) {
         if (e is Exception) {
           error = YcError(message: e.toString(), statusCode: 500);
         }
+        if (e is Error) {
+          error = YcError(message: e.toString(), statusCode: 500);
+        }
         if (e is YcError) {
           error = e;
         }
         if (errorHandler != null) {
           errorHandler(error);
         }
+        return YcData(error: error);
       });
     };
   };
