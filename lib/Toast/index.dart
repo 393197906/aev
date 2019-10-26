@@ -12,10 +12,10 @@ class Toast {
 
   Toast(
       {primaryColor = Colors.blue,
-      infoColor = Colors.grey,
-      warningColor = Colors.yellow,
-      successColor = Colors.green,
-      dangerColor = Colors.red}) {
+      infoColor = const Color.fromRGBO(103, 194, 58, 1),
+      warningColor = const Color.fromRGBO(230, 162, 60, 1),
+      successColor = const Color.fromRGBO(103, 194, 58, 1),
+      dangerColor = const Color.fromRGBO(245, 108, 108, 1)}) {
     this._successColor = successColor;
     this._primaryColor = primaryColor;
     this._dangerColor = dangerColor;

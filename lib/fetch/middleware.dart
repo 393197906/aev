@@ -13,14 +13,18 @@ Middleware ycFilter([ErrorHandler errorHandler]) {
     return (FetchOptions options) {
       return next(options).then((Response res) {
         final data = res.data is String ? jsonDecode(res.data) : res.data;
-        final statusCode = data['status'] ?? data['state'] ?? data['code'];
-        if (statusCode != 200 && statusCode != true) {
+        final status = data['status'] ?? data['state'] ?? data['code'];
+        if (status != 200 && status != "200" && status != true) {
           final message =
               data['message'] ?? data['msg'] ?? data['info'] ?? "未知错误";
-          throw YcError(message: message, statusCode: int.parse(statusCode));
+
+          final statusCode = int.parse(status.toString());
+          throw YcError(message: message, statusCode: statusCode);
         }
         return YcData(
-            data: data['data'] ?? null, response: res, completeData: data);
+            data: data['data'] ?? data['result'] ?? null,
+            response: res,
+            completeData: data);
       }).catchError((e) {
         var error;
         if (e is DioError) {
