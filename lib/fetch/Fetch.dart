@@ -22,9 +22,7 @@ class FetchOptions {
 
   @override
   String toString() {
-    return {
-      "url": url,
-    }.toString();
+    return {"url": url, "params": params.toString()}.toString();
   }
 }
 

@@ -12,6 +12,12 @@ Middleware ycFilter([ErrorHandler errorHandler]) {
   return (next) {
     return (FetchOptions options) {
       return next(options).then((Response res) {
+        print("@start----------options-------------@start");
+        print(options);
+        print("@end-----------options------------@end");
+        print("@start----------response-------------@start");
+        print(res);
+        print("@end-----------response------------@end");
         final data = res.data is String ? jsonDecode(res.data) : res.data;
         final status = data['status'] ?? data['state'] ?? data['code'];
         if (status != 200 && status != "200" && status != true) {
