@@ -70,7 +70,7 @@ class Fetch {
   _generateFetch() => _compose(this.middlewares)(this._fetch);
 
   get(String url, [Map<String, dynamic> params = const {}]) async {
-    return await _generateFetch()(FetchOptions(url: url, method: "GET"));
+    return await _generateFetch()(FetchOptions(url: url, method: "GET", params: params));
   }
 
   post(String url, [Map<String, dynamic> params = const {}]) async {

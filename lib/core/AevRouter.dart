@@ -55,7 +55,8 @@ class AevRouter {
   // TODO
   // 重建
   Future reLaunch(String path) {
-    return _observe.navigator.pushNamed(path);
+    return _observe.navigator
+        .pushNamedAndRemoveUntil(path, (router) => router == null);
   }
 
   void use(RouterHookHandler routerHookHandler) {
