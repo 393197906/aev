@@ -21,8 +21,9 @@ Middleware ycFilter([ErrorHandler errorHandler]) {
         final data = res.data is String ? jsonDecode(res.data) : res.data;
         final status = data['status'] ?? data['state'] ?? data['code'];
         if (status != 200 && status != "200" && status != true) {
-          final message =
-              data['message'] ?? data['msg'] ?? data['info'] ?? "未知错误";
+          final message = data['error'] ?? data['message'] ?? data['msg'] ??
+              data['info'] ??
+              "未知错误";
 
           final statusCode = int.parse(status.toString());
           throw YcError(message: message, statusCode: statusCode);
