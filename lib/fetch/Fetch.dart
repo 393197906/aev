@@ -13,16 +13,26 @@ class FetchOptions {
   int receiveTimeout;
   ValidateStatus validateStatus;
 
-  FetchOptions(
-      {@required this.url,
-      @required this.params,
-      @required this.method,
-      this.onSendProgress,
-      this.onReceiveProgress});
+  FetchOptions({@required this.url,
+    @required this.params,
+    @required this.method,
+    this.onSendProgress,
+    this.onReceiveProgress});
 
   @override
   String toString() {
-    return {"url": url, "params": params.toString()}.toString();
+    return {
+      "url": url,
+      "params": params.toString(),
+      "method": method,
+      "contentType": contentType,
+      "headers": headers,
+      "onSendProgress": onSendProgress,
+      "onReceiveProgress": onReceiveProgress,
+      "sendTimeout": sendTimeout,
+      "receiveTimeout": receiveTimeout,
+      "validateStatus": validateStatus
+    }.toString();
   }
 }
 
@@ -50,9 +60,9 @@ class Fetch {
           receiveTimeout: fetchOptions.receiveTimeout,
           sendTimeout: fetchOptions.sendTimeout,
           method: fetchOptions.method,
-          validateStatus: (int status) => true),
+          validateStatus: fetchOptions.validateStatus ?? (int status) => true),
       queryParameters:
-          fetchOptions.method == "GET" ? fetchOptions.params : null,
+      fetchOptions.method == "GET" ? fetchOptions.params : null,
       data: fetchOptions.method != "GET" ? fetchOptions.params : null,
     );
   }
@@ -70,7 +80,8 @@ class Fetch {
   _generateFetch() => _compose(this.middlewares)(this._fetch);
 
   get(String url, [Map<String, dynamic> params = const {}]) async {
-    return await _generateFetch()(FetchOptions(url: url, method: "GET", params: params));
+    return await _generateFetch()(
+        FetchOptions(url: url, method: "GET", params: params));
   }
 
   post(String url, [Map<String, dynamic> params = const {}]) async {
