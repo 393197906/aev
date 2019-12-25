@@ -1,5 +1,4 @@
 import 'package:aev/Toast/index.dart';
-import 'package:aev/color/AevColor.dart';
 import 'package:aev/core/AevBaseWidget.dart';
 import 'package:aev/fetch/Fetch.dart';
 import 'package:aev/ioc/Ioc.dart';
@@ -11,8 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class Aev {
   static Aev instance;
   AevRouter _aevRouter;
-  AevColor _aevColor;
-  bool _aevColorReverse = false;
+  ThemeData _aevTheme;
   String _aevTitle = "flutter应用";
 
   Aev._();
@@ -23,8 +21,8 @@ class Aev {
     return instance;
   }
 
-  Aev modal() {
-    return null;
+  Aev useModal() {
+    return this;
   }
 
   Aev useTitle(String title) {
@@ -32,15 +30,14 @@ class Aev {
     return this;
   }
 
-  Aev useRouter(AevRouter aevRouter) {
-    this._aevRouter = aevRouter;
-    Ioc.providerLazy<AevRouter>(() => aevRouter);
+  Aev useTheme(ThemeData themeData) {
+    this._aevTheme = themeData;
     return this;
   }
 
-  Aev useColor(AevColor aevColor, {bool reverse = false}) {
-    this._aevColor = aevColor;
-    this._aevColorReverse = reverse;
+  Aev useRouter(AevRouter aevRouter) {
+    this._aevRouter = aevRouter;
+    Ioc.providerLazy<AevRouter>(() => aevRouter);
     return this;
   }
 
@@ -64,8 +61,7 @@ class Aev {
     _iocHelper();
     runApp(AevBaseWidget(
       aevRouter: this._aevRouter,
-      aevColor: this._aevColor,
-      aevColorReverse: this._aevColorReverse,
+      theme: this._aevTheme,
       title: this._aevTitle,
     ));
     return this;

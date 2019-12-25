@@ -1,7 +1,10 @@
 library aev;
 
-// core
+// router
 export 'router/AevRouter.dart';
+
+// core
+export 'core/Aev.dart';
 
 // fetch
 export 'fetch/Fetch.dart';
@@ -34,5 +37,3 @@ export 'package:flutter_spinkit/flutter_spinkit.dart';
 
 //  pull_to_refresh: ^1.5.7(下拉刷新)
 export 'package:pull_to_refresh/pull_to_refresh.dart';
-
-
