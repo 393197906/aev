@@ -1,11 +1,9 @@
-
 import 'dart:async';
-
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 
 class AevFluroRouter extends Router{
-  
+
   @override
   Future navigateTo(BuildContext context, String path,
       {bool replace = false,

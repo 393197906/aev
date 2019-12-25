@@ -1,7 +1,7 @@
 library aev;
 
 // core
-export 'core/AevRouter.dart';
+export 'router/AevRouter.dart';
 
 // fetch
 export 'fetch/Fetch.dart';
