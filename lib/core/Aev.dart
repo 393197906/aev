@@ -37,7 +37,7 @@ class Aev {
 
   Aev useRouter(AevRouter aevRouter) {
     this._aevRouter = aevRouter;
-    Ioc.providerLazy<AevRouter>(() => aevRouter);
+    Ioc.provider<AevRouter>(aevRouter);
     return this;
   }
 

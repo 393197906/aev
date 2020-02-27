@@ -28,6 +28,9 @@ class AevBaseWidget extends StatelessWidget {
       onGenerateRoute: this.aevRouter?.generator,
       title: this.title,
       theme: this.theme,
+      darkTheme: ThemeData(
+        appBarTheme: AppBarTheme(brightness: Brightness.light)
+      ),
     );
   }
 }

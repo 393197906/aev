@@ -1,3 +1,4 @@
+import 'package:aev/aev.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,25 +13,26 @@ typedef T RegisterAevRouterFactory<T>(
 class AevRouter {
   final Router _router = Router();
   final List<RouterHookHandler> _hooksList = [];
+  final TransitionType transitionType;
   AevRouterObserver _observe;
   static AevRouter instance;
 
-  AevRouter._() {
+  AevRouter._({this.transitionType}) {
     this._observe = AevRouterObserver(_hooksList);
   }
 
-  factory AevRouter() {
+  factory AevRouter({transitionType}) {
     if (instance != null) return instance;
-    instance = AevRouter._();
+    instance = AevRouter._(transitionType:transitionType);
     return instance;
   }
 
   // 注册路由
-  AevRouter define(String path, RegisterAevRouterFactory factory) {
+  AevRouter define(String path, RegisterAevRouterFactory factory,{TransitionType transitionType}) {
     _router.define(path, handler: Handler(
         handlerFunc: (BuildContext context, Map<String, dynamic> params) {
       return factory(params, context);
-    }));
+    }),transitionType:transitionType ?? this.transitionType);
     return this;
   }
 
