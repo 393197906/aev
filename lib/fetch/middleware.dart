@@ -21,17 +21,14 @@ final Middleware fuse = (next) {
 Middleware token({String token, Future<String> tokenFactory()}) {
   return (next) {
     return (FetchOptions options) async {
-      options.headers =
-      {
-        "Authorization": (tokenFactory != null)
-            ? await tokenFactory()
-            : token ?? ""
+      options.headers = {
+        "Authorization":
+            (tokenFactory != null) ? await tokenFactory() : token ?? ""
       };
       return next(options);
     };
   };
 }
-
 
 Middleware ycFilter([ErrorHandler errorHandler]) {
   return (next) {
@@ -46,10 +43,10 @@ Middleware ycFilter([ErrorHandler errorHandler]) {
         final data = res.data is String ? jsonDecode(res.data) : res.data;
         final status = data['status'] ?? data['state'] ?? data['code'];
         if (status != 200 && status != "200" && status != true) {
-          final message = data['error'] ??
-              data['message'] ??
+          final message = data['message'] ??
               data['msg'] ??
               data['info'] ??
+              data['error'] ??
               "未知错误";
 
           final statusCode = int.parse(status.toString());
