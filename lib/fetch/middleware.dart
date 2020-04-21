@@ -50,7 +50,11 @@ Middleware ycFilter([ErrorHandler errorHandler]) {
               "未知错误";
 
           final statusCode = int.parse(status.toString());
-          throw YcError(message: message, statusCode: statusCode);
+          throw YcError(
+              message: message,
+              statusCode: statusCode,
+              fetchOptions: options,
+              response: res);
         }
         return YcData(
             data: data['data'] ?? data['result'] ?? null,
@@ -59,7 +63,10 @@ Middleware ycFilter([ErrorHandler errorHandler]) {
       }).catchError((e) {
         var error;
         if (e is DioError) {
-          error = YcError(message: e.error.toString(), statusCode: 500);
+          error = YcError(
+              message: e.error.toString(),
+              statusCode: 500,
+              response: e.response);
         }
         if (e is Exception) {
           error = YcError(message: e.toString(), statusCode: 500);
