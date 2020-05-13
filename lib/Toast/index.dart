@@ -37,7 +37,7 @@ class Toast {
             ? Ftoast.Toast.LENGTH_LONG
             : Ftoast.Toast.LENGTH_SHORT,
         gravity: gravity,
-        timeInSecForIos: timeInSecForIos,
+//        timeInSecForIos: timeInSecForIos,
         backgroundColor: backgroundColor,
         textColor: textColor,
         fontSize: fontSize);

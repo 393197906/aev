@@ -44,7 +44,7 @@ class AevRouter {
 
   // TODO
   // 返回
-  bool back<T>([T result]) {
+  void back<T>([T result]) {
     return _observe.navigator.pop(result);
   }
 
