@@ -23,16 +23,19 @@ class AevRouter {
 
   factory AevRouter({transitionType}) {
     if (instance != null) return instance;
-    instance = AevRouter._(transitionType:transitionType);
+    instance = AevRouter._(transitionType: transitionType);
     return instance;
   }
 
+  Router get fluroInstance => this._router; // fluro 实体
+
   // 注册路由
-  AevRouter define(String path, RegisterAevRouterFactory factory,{TransitionType transitionType}) {
+  AevRouter define(String path, RegisterAevRouterFactory factory,
+      {TransitionType transitionType}) {
     _router.define(path, handler: Handler(
         handlerFunc: (BuildContext context, Map<String, dynamic> params) {
       return factory(params, context);
-    }),transitionType:transitionType ?? this.transitionType);
+    }), transitionType: transitionType ?? this.transitionType);
     return this;
   }
 
