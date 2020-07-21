@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   dio: 3.0.9
+  provider: 4.3.1
   get_it: 3.0.3
   cached_network_image: 2.0.0-rc
   fluro: 1.6.3

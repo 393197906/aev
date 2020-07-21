@@ -7,11 +7,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+typedef Widget UseModelHandel(Widget child);
+
 class Aev {
   static Aev instance;
+
   AevRouter _aevRouter;
   ThemeData _aevTheme;
   String _aevTitle = "flutter应用";
+  UseModelHandel _useModelHandel;
 
   Aev._();
 
@@ -21,7 +25,8 @@ class Aev {
     return instance;
   }
 
-  Aev useModal() {
+  Aev useModel(UseModelHandel useModelHandel) {
+    this._useModelHandel = useModelHandel;
     return this;
   }
 
@@ -59,11 +64,14 @@ class Aev {
 
   Aev start() {
     _iocHelper();
-    runApp(AevBaseWidget(
+    final aevBaseWidget = AevBaseWidget(
       aevRouter: this._aevRouter,
       theme: this._aevTheme,
       title: this._aevTitle,
-    ));
+    );
+    this._useModelHandel != null
+        ? runApp(this._useModelHandel(aevBaseWidget))
+        : runApp(aevBaseWidget);
     return this;
   }
 }

@@ -13,6 +13,10 @@ export 'fetch/YcError.dart';
 export 'fetch/YcData.dart';
 export 'package:dio/dio.dart' show Headers, FormData;
 
+// provider
+export 'package:provider/provider.dart';
+export 'package:provider/single_child_widget.dart';
+
 // regexp
 export 'regexp/index.dart';
 
