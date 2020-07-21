@@ -42,7 +42,7 @@ Middleware ycFilter([ErrorHandler errorHandler]) {
         print("@end-----------response------------@end");
         final data = res.data is String ? jsonDecode(res.data) : res.data;
         final status = data['status'] ?? data['state'] ?? data['code'];
-        if (status != 200 && status != "200" && status != true) {
+        if (status != 200 && status != "200" && status != true &&status != 10000) {
           final message = data['message'] ??
               data['msg'] ??
               data['info'] ??
