@@ -11,7 +11,7 @@ typedef T RegisterAevRouterFactory<T>(
     Map<String, dynamic> params, BuildContext ctx);
 
 class AevRouter {
-  final Router _router = Router();
+  final FluroRouter _router = FluroRouter();
   final List<RouterHookHandler> _hooksList = [];
   final TransitionType transitionType;
   AevRouterObserver _observe;
@@ -27,7 +27,7 @@ class AevRouter {
     return instance;
   }
 
-  Router get fluroInstance => this._router; // fluro 实体
+  FluroRouter get fluroInstance => this._router; // fluro 实体
 
   // 注册路由
   AevRouter define(String path, RegisterAevRouterFactory factory,

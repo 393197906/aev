@@ -13,12 +13,12 @@ dependencies:
   dio: 3.0.9
   provider: 4.3.1
   get_it: 3.0.3
-  cached_network_image: 2.0.0-rc
-  fluro: 1.6.3
-  fluttertoast: 4.0.1
-  shared_preferences: 0.5.7+2
+  cached_network_image: 2.3.3
+  fluro: 1.7.7
+  fluttertoast: ^7.1.1
+  shared_preferences: ^0.5.7+2
   flutter_spinkit: 4.1.0
-  pull_to_refresh: 1.6.1
+  pull_to_refresh: ^1.6.1
   flutter_cupertino_localizations: ^1.0.1
 
 
